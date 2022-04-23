@@ -2,8 +2,41 @@ import React, {useState,setState} from 'react';
 import './style.css'
 import {database} from '../firebase'
 import {ref,push,child,update} from "firebase/database";
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 function RegistrationForm() {
+
+    const [values, setValues] = React.useState({
+        password: '',
+        showPassword: false,
+      });
+    
+      const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+      };
+    
+      const handleClickShowPassword = () => {
+        setValues({
+          ...values,
+          showPassword: !values.showPassword,
+        });
+      };
+    
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
+    
     
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
@@ -51,19 +84,55 @@ function RegistrationForm() {
             <div className="form-body">
                 <div className="username">
                     <label className="form__label" for="firstName">First Name </label>
-                    <input className="form__input" type="text" value={firstName} onChange = {(e) => handleInputChange(e)} id="firstName" placeholder="First Name"/>
-                </div>
-                <div className="lastname">
+                    <TextField
+                    required
+                    label="Required"
+                    defaultValue="Enter First Name"
+                    color="secondary"
+                    size="normal"
+                    value={firstName} onChange = {(e) => handleInputChange(e)} id="firstName" className="form__input" placeholder="First Name"/>
                     <label className="form__label" for="lastName">Last Name </label>
-                    <input  type="text" name="" id="lastName" value={lastName}  className="form__input" onChange = {(e) => handleInputChange(e)} placeholder="LastName"/>
+                    <TextField
+                    required
+                    label="Required"
+                    defaultValue="Enter First Name"
+                    color="secondary"
+                    id="lastName" value={lastName}  className="form__input" onChange = {(e) => handleInputChange(e)} placeholder="LastName"/>
                 </div>
                 <div className="email">
                     <label className="form__label" for="email">Email </label>
-                    <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
+                    <TextField
+                    required
+                    label="Required"
+                    defaultValue="Enter First Name"
+                    color="secondary"
+                    id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
                 <div className="password">
                     <label className="form__label" for="password">Password </label>
-                    <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
+                    <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <OutlinedInput
+            id="password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={password}
+            onChange = {(e) => handleInputChange(e)}
+            className="form__input"
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
                 </div>
                 <div className="confirm-password">
                     <label className="form__label" for="confirmPassword">Confirm Password </label>

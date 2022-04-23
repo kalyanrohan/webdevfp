@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/header.js';
 import RegistrationForm from './components/registerForm.js';
+import InputAdornments from './components/sample.js';
 
 
 function App() {
