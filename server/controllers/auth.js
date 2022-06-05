@@ -56,4 +56,38 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { signup, login }
+//edit profile
+const editProfile = async (req, res) => {
+    try {
+        const { fullName, username, phoneNumber } = req.body;
+
+        const serverClient = connect(api_key, api_secret, app_id);
+
+        //get user id
+        const { users } = await client.queryUsers({ name: username });
+
+        const userId= users[0].id;
+
+        const updateResponse = await serverClient.upsertUser({ 
+            id: userId,
+            fullName:fullName,
+            username:username,
+            phoneNumber:phoneNumber
+         });
+
+        if (updateResponse) {
+            res.status(200).json({ message: 'Profile updated' });
+        }
+        else {
+            res.status(500).json({ message: 'Profile failed to updated' });
+        }
+    }
+    catch (err) {
+        console.log(err);
+
+        res.status(500).json({ message: err });
+    }
+}
+
+
+module.exports = { signup, login, editProfile };
