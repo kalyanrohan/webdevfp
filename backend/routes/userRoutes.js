@@ -23,15 +23,8 @@ router.post('/', async(req, res)=> {
 // updating username and password
 router.put('/:id', async(req, res)=> {
   try {
-    const user = await User.findbyId(request.user._id,);
-
-    if (user) {
-      user.name = req.body.name || user.name;
-
-      const user = await user.save();
-
-    }
-
+    const {_id, name} = req.body;
+    const user = await User.findOneAndUpdate(_id, {name}, {new: true});
     res.status(200).json(user);
   } catch (e) {
     console.log(e);
