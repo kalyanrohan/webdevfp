@@ -3,7 +3,7 @@ const app = express();
 const userRoutes = require('./routes/userRoutes')
 const User = require('./models/User');
 const Message = require('./models/Message')
-const rooms = ['Bipolar', 'Depression', 'Anxiety', 'PTSD','BPD'];
+const rooms = ['general','Bipolar', 'Depression', 'Anxiety', 'PTSD','BPD'];
 const cors = require('cors');
 
 app.use(express.urlencoded({extended: true}));

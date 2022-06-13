@@ -43,6 +43,7 @@ function Navigation() {
                                 id="basic-nav-dropdown"
                             >
                                 <NavDropdown.Item href="/Profile">Edit Profile</NavDropdown.Item>
+                                <NavDropdown.Item href="/KTP">Verify</NavDropdown.Item>
                                 <NavDropdown.Item>
                                     <Button variant="danger" onClick={handleLogout}>
                                         Logout

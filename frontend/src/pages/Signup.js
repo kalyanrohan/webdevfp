@@ -3,7 +3,7 @@ import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useSignupUserMutation } from "../services/appApi";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
-import botImg from "../assets/bot.jpeg";
+import botImg from "../assets/avatar.png";
 
 function Signup() {
     const [email, setEmail] = useState("");
@@ -86,16 +86,6 @@ function Signup() {
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>KTP</Form.Label>
-                            <div className="signup-profile-pic__container">
-                            <label htmlFor="image-upload" className="image-upload-label">
-                                <i className="fas fa-plus-circle add-picture-icon"></i>
-                            </label>
-                            <input type="file" id="image-upload" hidden accept="image/png, image/jpeg" onChange={validateImg} />
-                        </div>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

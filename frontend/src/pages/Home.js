@@ -8,11 +8,11 @@ function Home() {
         <Row>
             <Col md={6} className="d-flex flex-direction-column align-items-center justify-content-center">
                 <div>
-                    <h1>Talk about your </h1>
-                    <p>Chat App lets you connect with the world</p>
-                    <LinkContainer to="/signup">
-                        <Button variant="success">
-                            Get Started <i className="fas fa-comments home-message-icon"></i>
+                    <h1>A Safe Mental Space </h1>
+                    <p>Talk about your mental health issues and join the community now to get support</p>
+                    <LinkContainer to="/chat">
+                        <Button variant="primary">
+                            Get Started 
                         </Button>
                     </LinkContainer>
                 </div>

@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
+import KTP from "./pages/KTP";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { AppContext, socket } from "./context/appContext";
@@ -32,6 +33,7 @@ function App() {
                     )}
                     <Route path="/chat" element={<Chat />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/ktp" element={<KTP />} />
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>
