@@ -18,15 +18,6 @@ const appApi = createApi({
             }),
         }),
 
-        // updating the user
-        updateUser: builder.mutation({
-            query: (user) => ({
-                url: `/users/${user.id}`,
-                method: "PUT",
-                body: user,
-            }),
-        }),
-
         // login
         loginUser: builder.mutation({
             query: (user) => ({
@@ -36,8 +27,16 @@ const appApi = createApi({
             }),
         }),
 
-        // logout
+        // updateing user
+        updateUser: builder.mutation({
+            query: (user) => ({
+                url: `/users/${user._id}`,
+                method: "PUT",
+                body: user,
+            }),
+        }),
 
+        // logout
         logoutUser: builder.mutation({
             query: (payload) => ({
                 url: "/logout",
@@ -48,6 +47,6 @@ const appApi = createApi({
     }),
 });
 
-export const { useSignupUserMutation, useLoginUserMutation, useUpdateUserMutation, useLogoutUserMutation } = appApi;
+export const { useSignupUserMutation, useUpdateUserMutation,useLoginUserMutation, useLogoutUserMutation } = appApi;
 
 export default appApi;

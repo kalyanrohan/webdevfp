@@ -18,7 +18,7 @@ function Navigation() {
             <Container>
                 <LinkContainer to="/">
                     <Navbar.Brand>
-                        <img src={logo} style={{ width: 50, height: 50 }} />
+                        <img src={logo} style={{ width: 80, height: 80 }} />
                     </Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,9 +43,6 @@ function Navigation() {
                                 id="basic-nav-dropdown"
                             >
                                 <NavDropdown.Item href="/Profile">Edit Profile</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-
                                 <NavDropdown.Item>
                                     <Button variant="danger" onClick={handleLogout}>
                                         Logout

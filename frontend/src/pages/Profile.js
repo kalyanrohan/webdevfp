@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useUpdateUserMutation } from "../services/appApi";
-import {useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import botImg from "../assets/bot.jpeg";
+import { AppContext } from "../context/appContext";
 
-function Signup() {
+function Profile() {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [updateUser, { isLoading, error }] = useUpdateUserMutation();
@@ -14,6 +15,7 @@ function Signup() {
     const [image, setImage] = useState(null);
     const [upladingImg, setUploadingImg] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
+    const { socket } = useContext(AppContext);
 
     function validateImg(e) {
         const file = e.target.files[0];
@@ -45,10 +47,10 @@ function Signup() {
     }
 
     async function handleSignup(e) {
-        e.preventDefault();
         // signup the user
-        updateUser({ name, password}).then(({ data }) => {
+        updateUser({name}).then(({ data }) => {
             if (data) {
+                socket.emit("new-user");
                 console.log(data);
                 navigate("/chat");
             }
@@ -70,11 +72,11 @@ function Signup() {
                         </div>
                         {error && <p className="alert alert-danger">{error.data}</p>}
                         <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Change Name</Form.Label>
-                            <Form.Control type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} value={name} />
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Your name" onChange={(e) => setName(e.target.value)} value={name} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Change Password</Form.Label>
+                            <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={password} />
                         </Form.Group>
                         <Button variant="primary" type="submit">
@@ -88,4 +90,4 @@ function Signup() {
     );
 }
 
-export default Signup;
+export default Profile;

@@ -31,7 +31,7 @@ function App() {
                         </>
                     )}
                     <Route path="/chat" element={<Chat />} />
-                    <Route path="/Profile" element={<Profile />} />
+                    <Route path="/profile" element={<Profile />} />
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>
